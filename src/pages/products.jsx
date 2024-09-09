@@ -3,10 +3,11 @@ import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProduct";
 import Counter from "../components/Fragments/Counter";
 import { getProducts } from "../services/product.service";
+import { getUsername } from "../services/auth.service";
 
 
 
-const email = localStorage.getItem('email');
+const token = localStorage.getItem('token');
 
 const ProductsPage = () => {
     const [cart, setCart] = useState([]);
@@ -15,6 +16,10 @@ const ProductsPage = () => {
 
     useEffect(() => {
         setCart(JSON.parse(localStorage.getItem('cart')) || []);
+    }, []);
+
+    useEffect(() => {
+        getUsername(token)
     }, []);
 
     useEffect(() => {
@@ -73,7 +78,7 @@ const ProductsPage = () => {
     return (
         <Fragment>
             <div className="flex justify-end h-20 bg-blue-600 text-white items-center px-10">
-                {email}
+                {/* {email} */}
                 <Button classname="ml-5 bg-black" onClick={handleLogout}>Logout</Button>
             </div>    
             <div className="flex justify-center py-5">
