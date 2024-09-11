@@ -5,4 +5,8 @@ export const getProducts = (callback) => {
     .then((res) => callback(res.data))
     .catch((err) => console.error("Error fetching products",err))
 }
-
+export const getDetailProduct = (id, callback) => {
+    axios.get(`https://fakestoreapi.com/products/${id}`)
+    .then((res) => callback(res.data))
+    .catch((err) => console.error("Error fetching products",err))
+}
